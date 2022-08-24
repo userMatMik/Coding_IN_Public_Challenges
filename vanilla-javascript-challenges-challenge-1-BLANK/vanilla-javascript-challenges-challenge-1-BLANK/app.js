@@ -185,4 +185,30 @@ window.onload = function() {
 
 // 4. Removes a card from the DOM only when a card image is clicked. (BONUS: Make it work on new cards added to the DOM.)
 
+function handleImgClick(event) {
+    if (event.target.classList.contains('card__image')) {
+        event.target.parentElement.remove();
+    }
+}
+
+
+cardContaier.addEventListener('click', handleImgClick)
+
 // 5. Create and insert a button that says "Change Color Scheme" (ensure the button has a class of 'btn') that changes the css variable --_hue to a random number between 0 and 360 when clicked.
+
+const changeColorBtn = document.createElement('button');
+changeColorBtn.classList.add('btn');
+changeColorBtn.id = 'change-color-btn';
+changeColorBtn.textContent = "Change Color Scheme";
+
+cardContaier.insertAdjacentElement('beforebegin', changeColorBtn);
+
+function changeColor() {
+    const root = document.documentElement;
+    const randomHue = Math.floor(Math.random() * 360)
+    console.log(randomHue); 
+
+    root.style.setProperty('--_hue', randomHue)
+}
+
+changeColorBtn.addEventListener('click', changeColor)
